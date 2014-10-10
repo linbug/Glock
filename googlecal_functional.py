@@ -1,7 +1,14 @@
-le_rue_de_fichier = "C:\Users\Admin\Dropbox\Documents\Programming\googlecaltmp.txt"
+#!/usr/bin/env python2
+le_nom_de_calendrier = "your_email@gmail.com"
+
+def make_filename():
+    import tempfile
+    import os.path
+    return os.path.join([tempfile.gettempdir(),"glockfile.txt"])
+le_rue_de_fichier = make_filename()
+
 le_clef_dapi = '22808445872-fkcaacm3fa4ponpto1nnech8154f65me.apps.googleusercontent.com'
 le_secret_de_client = '0IzXQ9JqGOv_w5i7YeJVzNG_'
-le_nom_de_calendrier = "your_email@gmail.com"
 
 def gcal (label):
     """Write the thing you want to track, or None for untrack"""
@@ -42,8 +49,7 @@ def read_file():
                 return None
     except:
         return None
-        
-        
+
 def erase_file():
     """erase the file"""
     try:
@@ -51,7 +57,7 @@ def erase_file():
         os.remove(le_rue_de_fichier)
     except:
         return None
-    
+
 def write_file(start, label):
     """make a file and write in it the start time and event name"""
     with open (le_rue_de_fichier, 'w') as f:
