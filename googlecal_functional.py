@@ -31,7 +31,6 @@ def track(label):
     start = now()
     write_file(start, label)
 
-
 def now():
     """the current time point"""
     import time
@@ -73,13 +72,13 @@ def make_event(start, end, label):
 
 def send(event):
     """send your event to google calendar!!!"""
-    
+
     import httplib2
     from apiclient.discovery import build
     from oauth2client.file import Storage
     from oauth2client.client import OAuth2WebServerFlow
     from oauth2client.tools import run
-    
+
     FLOW = OAuth2WebServerFlow(
         client_id= le_clef_dapi,
         client_secret= le_secret_de_client,
@@ -90,12 +89,12 @@ def send(event):
     credentials = storage.get()
     if credentials is None or credentials.invalid == True:
         credentials = run(FLOW, storage)
-    
+
     http = httplib2.Http()
     http = credentials.authorize(http)
-    
+
     service = build(serviceName='calendar', version='v3', http=http, developerKey = le_clef_dapi)
-    
+
     service.events().insert(calendarId= le_nom_de_calendrier, body=event).execute()
 
 import sys
