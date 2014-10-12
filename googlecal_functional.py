@@ -4,7 +4,7 @@ le_nom_de_calendrier = "your_email@gmail.com"
 def make_filename():
     import tempfile
     import os.path
-    return os.path.join([tempfile.gettempdir(),"glockfile.txt"])
+    return os.path.join(tempfile.gettempdir(),"glockfile.txt")
 le_rue_de_fichier = make_filename()
 
 le_clef_dapi = '22808445872-fkcaacm3fa4ponpto1nnech8154f65me.apps.googleusercontent.com'
@@ -45,9 +45,13 @@ def read_file():
             if len(lines) == 2:
                 return lines [0].strip(), lines[1]
             else:
+                print "File contents in the wrong format"
                 return None
     except:
+        print "No file found"
         return None
+        
+     
 
 def erase_file():
     """erase the file"""
@@ -96,6 +100,7 @@ def send(event):
     service = build(serviceName='calendar', version='v3', http=http, developerKey = le_clef_dapi)
 
     service.events().insert(calendarId= le_nom_de_calendrier, body=event).execute()
+    print "Event successfully logged"
 
 import sys
 if sys.argv[0] == "track":
