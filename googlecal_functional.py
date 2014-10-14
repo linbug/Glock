@@ -48,7 +48,7 @@ def read_file():
                 print "File contents in the wrong format"
                 return None
     except:
-        print "No file found"
+        
         return None
         
      
