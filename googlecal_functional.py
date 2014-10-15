@@ -77,9 +77,10 @@ def send(event):
     from apiclient.discovery import build
     from oauth2client.file import Storage
     from oauth2client.client import OAuth2WebServerFlow
-    from oauth2client.tools import run
+    from oauth2client.tools import run_flow, argparser
+    from argparse import ArgumentParser
 
-    FLOW = OAuth2WebServerFlow(
+    flow = OAuth2WebServerFlow(
         client_id= le_clef_dapi,
         client_secret= le_secret_de_client,
         scope='https://www.googleapis.com/auth/calendar',
@@ -88,7 +89,8 @@ def send(event):
     storage = Storage('calendar.dat')
     credentials = storage.get()
     if credentials is None or credentials.invalid == True:
-        credentials = run(FLOW, storage)
+        parser = ArgumentParser(parents=[argparser])
+        credentials = run_flow(flow, storage, parser.parse_args())
 
     http = httplib2.Http()
     http = credentials.authorize(http)
