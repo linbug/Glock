@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 le_nom_de_calendrier = "your_email@gmail.com"
 
 def make_filename():
@@ -45,7 +45,7 @@ def read_file():
             if len(lines) == 2:
                 return lines [0].strip(), lines[1]
             else:
-                print "File contents in the wrong format"
+                print("File contents in the wrong format")
                 return None
     except:
         return None
@@ -97,7 +97,7 @@ def send(event):
     service = build(serviceName='calendar', version='v3', http=http, developerKey = le_clef_dapi)
 
     service.events().insert(calendarId= le_nom_de_calendrier, body=event).execute()
-    print "Event successfully logged"
+    print("Event successfully logged")
 
 import sys
 if sys.argv[0] == "track":
