@@ -22,4 +22,7 @@ and put them both in your $PATH.
 ## **Requirements**
 
 * OS X or GNU/Linux
-* Python packages: tempfile, os.path, time, rfc3339, os, httplib2, apiclient, oauth2client, sys
+* Python packages:
+  * [strict-rfc3339](https://pypi.python.org/pypi/strict-rfc3339)
+  * apiclient, oauth2client, httplib2 ([get them all for Python 3](https://github.com/enorvelle/GoogleApiPython3x))
+  * built-in libraries: tempfile, os, sys, argparse
