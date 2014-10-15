@@ -33,9 +33,8 @@ def track(label):
 
 def now():
     """the current time point"""
-    import time
-    from rfc3339 import rfc3339
-    return str(rfc3339(time.time()))
+    import strict_rfc3339
+    return str(strict_rfc3339.now_to_rfc3339_localoffset())
 
 def read_file():
     """open the file and return the timestamp and event name as a tuple"""
