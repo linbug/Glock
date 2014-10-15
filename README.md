@@ -1,12 +1,12 @@
 Glock
 =====
 
-Clock in and out of google calendar events from the command line 
+Clock in and out of google calendar events from the command line
 
 ## **Usage**
 
 * `track "your event"`  : starts timer for your event; untracks any previously tracking events
-* `untrack `            : ends timer; sends event to google calendar 
+* `untrack `            : ends timer; sends event to google calendar
 
 ## **Configuration**
 
@@ -21,5 +21,5 @@ and put them both in your $PATH.
 
 ## **Requirements**
 
-* Mac OSX or Linux 
+* OS X or GNU/Linux
 * Python packages: tempfile, os.path, time, rfc3339, os, httplib2, apiclient, oauth2client, sys

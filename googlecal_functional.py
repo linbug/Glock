@@ -48,10 +48,7 @@ def read_file():
                 print "File contents in the wrong format"
                 return None
     except:
-        
         return None
-        
-     
 
 def erase_file():
     """erase the file"""
