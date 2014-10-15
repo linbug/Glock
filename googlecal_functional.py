@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 le_nom_de_calendrier = "your_email@gmail.com"
 
 def make_filename():
@@ -33,9 +33,8 @@ def track(label):
 
 def now():
     """the current time point"""
-    import time
-    from rfc3339 import rfc3339
-    return str(rfc3339(time.time()))
+    import strict_rfc3339
+    return str(strict_rfc3339.now_to_rfc3339_localoffset())
 
 def read_file():
     """open the file and return the timestamp and event name as a tuple"""
@@ -45,13 +44,10 @@ def read_file():
             if len(lines) == 2:
                 return lines [0].strip(), lines[1]
             else:
-                print "File contents in the wrong format"
+                print("File contents in the wrong format")
                 return None
     except:
-        
         return None
-        
-     
 
 def erase_file():
     """erase the file"""
@@ -81,9 +77,10 @@ def send(event):
     from apiclient.discovery import build
     from oauth2client.file import Storage
     from oauth2client.client import OAuth2WebServerFlow
-    from oauth2client.tools import run
+    from oauth2client.tools import run_flow, argparser
+    from argparse import ArgumentParser
 
-    FLOW = OAuth2WebServerFlow(
+    flow = OAuth2WebServerFlow(
         client_id= le_clef_dapi,
         client_secret= le_secret_de_client,
         scope='https://www.googleapis.com/auth/calendar',
@@ -92,7 +89,8 @@ def send(event):
     storage = Storage('calendar.dat')
     credentials = storage.get()
     if credentials is None or credentials.invalid == True:
-        credentials = run(FLOW, storage)
+        parser = ArgumentParser(parents=[argparser])
+        credentials = run_flow(flow, storage, parser.parse_args())
 
     http = httplib2.Http()
     http = credentials.authorize(http)
@@ -100,7 +98,7 @@ def send(event):
     service = build(serviceName='calendar', version='v3', http=http, developerKey = le_clef_dapi)
 
     service.events().insert(calendarId= le_nom_de_calendrier, body=event).execute()
-    print "Event successfully logged"
+    print("Event successfully logged")
 
 import sys
 if sys.argv[0] == "track":
