@@ -100,8 +100,8 @@ def send(event):
     service.events().insert(calendarId= le_nom_de_calendrier, body=event).execute()
     print("Event successfully logged")
 
-import sys
-if sys.argv[0] == "track":
+import os, sys
+if os.path.basename(sys.argv[0]) == "track":
     gcal(sys.argv[1])
 else:
     gcal(None)
