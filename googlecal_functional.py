@@ -1,9 +1,18 @@
 #!/usr/bin/env python
 le_nom_de_calendrier = "your_email@gmail.com"
 
+import os
+import sys
+import tempfile
+from argparse import ArgumentParser
+import strict_rfc3339
+import httplib2
+from oauth2client.tools import run_flow, argparser
+from oauth2client.client import OAuth2WebServerFlow
+from oauth2client.file import Storage
+from apiclient.discovery import build
+
 def make_filename():
-    import tempfile
-    import os.path
     return os.path.join(tempfile.gettempdir(),"glockfile.txt")
 le_rue_de_fichier = make_filename()
 
@@ -33,7 +42,6 @@ def track(label):
 
 def now():
     """the current time point"""
-    import strict_rfc3339
     return str(strict_rfc3339.now_to_rfc3339_localoffset())
 
 def read_file():
@@ -52,7 +60,6 @@ def read_file():
 def erase_file():
     """erase the file"""
     try:
-        import os
         os.remove(le_rue_de_fichier)
     except:
         return None
@@ -72,13 +79,6 @@ def make_event(start, end, label):
 
 def send(event):
     """send your event to google calendar!!!"""
-
-    import httplib2
-    from apiclient.discovery import build
-    from oauth2client.file import Storage
-    from oauth2client.client import OAuth2WebServerFlow
-    from oauth2client.tools import run_flow, argparser
-    from argparse import ArgumentParser
 
     flow = OAuth2WebServerFlow(
         client_id= le_clef_dapi,
@@ -100,7 +100,6 @@ def send(event):
     service.events().insert(calendarId= le_nom_de_calendrier, body=event).execute()
     print("Event successfully logged")
 
-import os, sys
 if os.path.basename(sys.argv[0]) == "track":
     gcal(sys.argv[1])
 else:
