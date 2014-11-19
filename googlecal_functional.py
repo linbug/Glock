@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 le_nom_de_calendrier = "your_email@gmail.com"
+le_rue_de_calendardat = None # can be set to a custom location for cached auth file
 
 import os
 import sys
@@ -11,6 +12,11 @@ from oauth2client.tools import run_flow, argparser
 from oauth2client.client import OAuth2WebServerFlow
 from oauth2client.file import Storage
 from apiclient.discovery import build
+
+def make_calendardat():
+  return os.path.expanduser("~/.calendar.dat")
+if le_rue_de_calendardat is None:
+  le_rue_de_calendardat = make_calendardat()
 
 def make_filename():
     return os.path.join(tempfile.gettempdir(),"glockfile.txt")
@@ -86,7 +92,7 @@ def send(event):
         scope='https://www.googleapis.com/auth/calendar',
         user_agent='GoogleCalendarApp/1.0')
 
-    storage = Storage('calendar.dat')
+    storage = Storage(le_rue_de_calendardat)
     credentials = storage.get()
     if credentials is None or credentials.invalid == True:
         parser = ArgumentParser(parents=[argparser])
