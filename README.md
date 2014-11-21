@@ -11,7 +11,7 @@ Clock in and out of google calendar events from the command line
 ## **Configuration**
 
 Change "your_email@gmail.com" to your email address (or your preferred calendar address, if you have more than one calendar).
-Google will ask you for authorisation the first time you use it. Then forever after your login details will be stored in the mysterious "calendar.dat" file somewhere on your hard drive....
+Google will ask you for authorisation the first time you use it. Then forever after your login details will be stored in the mysterious "calendar.dat" file in your home directory. This path can be set manually by changing the `le_rue_de_calendardat` variable.
 
 You also need to link "track" and "untrack" to running the script:
 
