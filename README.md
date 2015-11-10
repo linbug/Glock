@@ -15,8 +15,8 @@ Google will ask you for authorisation the first time you use it. Then forever af
 
 You also need to link "track" and "untrack" to running the script, by adding the following to your .bash_profile:
 
-alias untrack='/path/to/googlecal_functional.py untrack'
-alias track='/path/to/googlecal_functional.py track'
+* alias untrack='/path/to/googlecal_functional.py untrack'
+* alias track='/path/to/googlecal_functional.py track'
 
 and put them both in your $PATH.
 
