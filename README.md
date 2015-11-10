@@ -13,15 +13,16 @@ Clock in and out of google calendar events from the command line
 Change "your_email@gmail.com" to your email address (or your preferred calendar address, if you have more than one calendar).
 Google will ask you for authorisation the first time you use it. Then forever after your login details will be stored in the mysterious "calendar.dat" file in your home directory. This path can be set manually by changing the `le_rue_de_calendardat` variable.
 
-You also need to link "track" and "untrack" to running the script:
+You also need to link "track" and "untrack" to running the script, by adding the following to your .bash_profile:
 
-* `ln -s /path/to/googlecal_functional.py track`
-* `ln -s /path/to/googlecal_functional.py untrack`
+alias untrack='/path/to/googlecal_functional.py untrack'
+alias track='/path/to/googlecal_functional.py track'
 
 and put them both in your $PATH.
 
 ## **Requirements**
 
+* Python 3 (if you're using Python 2, you can set up a virtual environment)
 * OS X or GNU/Linux
 * Python packages:
   * [strict-rfc3339](https://pypi.python.org/pypi/strict-rfc3339)
