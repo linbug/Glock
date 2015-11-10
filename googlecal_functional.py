@@ -28,6 +28,7 @@ le_secret_de_client = '0IzXQ9JqGOv_w5i7YeJVzNG_'
 def gcal (label):
     """Write the thing you want to track, or None for untrack"""
     untrack()
+    print(label)
     if label is not None:
         track(label)
 
@@ -106,7 +107,7 @@ def send(event):
     service.events().insert(calendarId= le_nom_de_calendrier, body=event).execute()
     print("Event successfully logged")
 
-if os.path.basename(sys.argv[0]) == "track":
-    gcal(sys.argv[1])
+if os.path.basename(sys.argv[1]) == "track":
+    gcal(sys.argv[2])
 else:
     gcal(None)
