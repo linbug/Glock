@@ -18,8 +18,6 @@ You also need to link "track" and "untrack" to running the script, by adding the
 * alias untrack='/path/to/googlecal_functional.py untrack'
 * alias track='/path/to/googlecal_functional.py track'
 
-and put them both in your $PATH.
-
 ## **Requirements**
 
 * Python 3 (if you're using Python 2, you can set up a virtual environment)
